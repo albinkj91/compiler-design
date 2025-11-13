@@ -1,1 +1,1 @@
-some_function()
+()Argument1,
