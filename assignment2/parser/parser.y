@@ -5,32 +5,84 @@
 %}
 
 %token T_begin "begin"
+%token T_case  "case"
 %token T_do    "do"
 %token T_else  "else"
 %token T_end   "end"
 %token T_for   "for"
 %token T_if    "if"
 %token T_let   "let"
+%token T_of    "of"
 %token T_print "print"
 %token T_then  "then"
+%token T_var   "var"
+%token T_div   "div"
 
 %token T_identifier
 %token T_integer
+%token T_atom
+%token T_string
 
 %left '+' '-'
-%left '*' '/' '%'
+%left '*' '/' '%' T_div
 
 %expect 1
 %%
 
-program : stmt_list
+program : functions
         ;
 
-stmt_list : /* nothing */
-          | stmt_list stmt
+functions : /* nothing */
+          | functions function
           ;
 
-stmt : "begin" stmt_list "end"
+function : clauses '.'
+         ;
+
+clauses : clauses ';' clause | clause
+        ;
+
+clause : T_atom pat_args cl_body
+       ;
+
+cl_body : '-' '>' exprs
+        ;
+
+pat_args : '(' patterns ')' | '(' ')'
+         ;
+
+patterns : patterns ',' pat_expr | pat_expr
+         ;
+
+pat_expr : T_var '=' expr | T_var | T_integer | T_atom | T_string | binary
+         ;
+
+exprs : exprs ',' expr | expr
+      ;
+
+expr : expr '=' expr
+     | expr '+' expr | expr '-' expr | expr '*' expr | expr '/' expr | expr T_div expr |
+     | expr '=' '=' expr | expr '/' '=' expr | expr '=' '<' expr | expr '<' expr | expr '=' '>' expr | expr '>' expr
+     | T_var | T_integer | T_atom | T_string | binary
+     | T_case expr T_of case_cls T_end | T_begin exprs T_end | '(' expr ')'
+     ;
+
+case_cls : case_cls ';' case_cl | case_cl
+         ;
+
+case_cl : expr cl_body
+        ;
+
+binary : '<' '<' segments '>' '>' | '<' '<' '>' '>'
+       ;
+
+segments : segments ',' segment | segment
+         ;
+
+segment : T_var | T_integer | T_string
+        ;
+
+stmt : "begin" functions "end"
      | "for" expr "do" stmt
      | "if" expr "then" stmt
      | "if" expr "then" stmt "else" stmt

@@ -55,16 +55,21 @@ extern int yydebug;
     YYerror = 256,                 /* error  */
     YYUNDEF = 257,                 /* "invalid token"  */
     T_begin = 258,                 /* "begin"  */
-    T_do = 259,                    /* "do"  */
-    T_else = 260,                  /* "else"  */
-    T_end = 261,                   /* "end"  */
-    T_for = 262,                   /* "for"  */
-    T_if = 263,                    /* "if"  */
-    T_let = 264,                   /* "let"  */
-    T_print = 265,                 /* "print"  */
-    T_then = 266,                  /* "then"  */
-    T_identifier = 267,            /* T_identifier  */
-    T_integer = 268                /* T_integer  */
+    T_case = 259,                  /* "case"  */
+    T_do = 260,                    /* "do"  */
+    T_else = 261,                  /* "else"  */
+    T_end = 262,                   /* "end"  */
+    T_for = 263,                   /* "for"  */
+    T_if = 264,                    /* "if"  */
+    T_let = 265,                   /* "let"  */
+    T_of = 266,                    /* "of"  */
+    T_print = 267,                 /* "print"  */
+    T_then = 268,                  /* "then"  */
+    T_var = 269,                   /* "var"  */
+    T_identifier = 270,            /* T_identifier  */
+    T_integer = 271,               /* T_integer  */
+    T_atom = 272,                  /* T_atom  */
+    T_string = 273                 /* T_string  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
