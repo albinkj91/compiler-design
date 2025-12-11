@@ -23,6 +23,7 @@
 %token T_atom
 %token T_string
 
+%left '<' '>' '='
 %left '+' '-'
 %left '*' '/' '%' T_div
 
@@ -61,7 +62,7 @@ exprs : exprs ',' expr | expr
       ;
 
 expr : expr '=' expr
-     | expr '+' expr | expr '-' expr | expr '*' expr | expr '/' expr | expr T_div expr |
+     | expr '+' expr | expr '-' expr | expr '*' expr | expr '/' expr | expr T_div expr
      | expr '=' '=' expr | expr '/' '=' expr | expr '=' '<' expr | expr '<' expr | expr '=' '>' expr | expr '>' expr
      | T_var | T_integer | T_atom | T_string | binary
      | T_case expr T_of case_cls T_end | T_begin exprs T_end | '(' expr ')'
@@ -81,24 +82,6 @@ segments : segments ',' segment | segment
 
 segment : T_var | T_integer | T_string
         ;
-
-stmt : "begin" functions "end"
-     | "for" expr "do" stmt
-     | "if" expr "then" stmt
-     | "if" expr "then" stmt "else" stmt
-     | "let" T_identifier '=' expr
-     | "print" expr
-     ;
-
-expr : T_integer
-     | T_identifier
-     | '(' expr ')'
-     | expr '+' expr
-     | expr '-' expr
-     | expr '*' expr
-     | expr '/' expr
-     | expr '%' expr
-     ;
 
 %%
 
