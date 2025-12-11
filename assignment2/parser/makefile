@@ -17,7 +17,7 @@ parser.h parser.c: parser.y
 parser.o: parser.c lexer.h
 
 clean:
-	$(RM) lexer.c parser.output *.o
+	$(RM) lexer.c parser.output *.o lexer compiler
 
 distclean: clean
 	$(RM) compiler
