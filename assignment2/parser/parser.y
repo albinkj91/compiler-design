@@ -26,61 +26,61 @@
 %left '+' '-'
 %left '*' '/' '%' T_div
 
-%expect 1
+//%expect 1
 %%
 
-//program : functions
-//        ;
-//
-//functions : %empty
-//          | functions function
-//          ;
-//
-//function : clauses '.'
-//         ;
-//
-//clauses : clauses ';' clause | clause
-//        ;
-//
-//clause : T_atom pat_args cl_body
-//       ;
-//
-//cl_body : '-' '>' exprs
-//        ;
-//
-//pat_args : '(' patterns ')' | '(' ')'
-//         ;
-//
-//patterns : patterns ',' pat_expr | pat_expr
-//         ;
-//
-//pat_expr : T_identifier '=' expr | T_identifier | T_integer | T_atom | T_string | binary
-//         ;
-//
-//exprs : exprs ',' expr | expr
-//      ;
-//
-expr : expr '=' expr
-     | expr '+' expr | expr '-' expr | expr '*' expr | expr '/' expr | expr T_div expr
+program : functions
+        ;
+
+functions : %empty
+          | functions function
+          ;
+
+function : clauses '.'
+         ;
+
+clauses : clauses ';' clause | clause
+        ;
+
+clause : T_atom pat_args cl_body
+       ;
+
+cl_body : '-' '>' exprs
+        ;
+
+pat_args : '(' patterns ')' | '(' ')'
+         ;
+
+patterns : patterns ',' pat_expr | pat_expr
+         ;
+
+pat_expr : T_identifier '=' expr | T_identifier | T_integer | T_atom | T_string | binary
+         ;
+
+exprs : exprs ',' expr | expr
+      ;
+
+expr : expr '+' expr
+     | expr '=' expr | expr '-' expr | expr '*' expr | expr '/' expr | expr T_div expr
      | expr '=' '=' expr | expr '/' '=' expr | expr '=' '<' expr | expr '<' expr | expr '=' '>' expr | expr '>' expr
-     | T_identifier | T_integer | T_atom | T_string// | binary
-//     | T_case expr T_of case_cls T_end | T_begin exprs T_end | '(' expr ')'
+     | T_identifier | T_integer | T_atom | T_string | binary
+     | T_case expr T_of case_cls T_end | T_begin exprs T_end | '(' expr ')'
      ;
-//
-//case_cls : case_cls ';' case_cl | case_cl
-//         ;
-//
-//case_cl : expr cl_body
-//        ;
-//
-//binary : '<' '<' segments '>' '>' | '<' '<' '>' '>'
-//       ;
-//
-//segments : segments ',' segment | segment
-//         ;
-//
-//segment : T_identifier | T_integer | T_string
-//        ;
+
+case_cls : case_cls ';' case_cl | case_cl
+         ;
+
+case_cl : expr cl_body
+        ;
+
+binary : '<' '<' segments '>' '>' | '<' '<' '>' '>'
+       ;
+
+segments : segments ',' segment | segment
+         ;
+
+segment : T_identifier | T_integer | T_string
+        ;
 
 %%
 

@@ -65,10 +65,10 @@ extern int yydebug;
     T_of = 266,                    /* "of"  */
     T_print = 267,                 /* "print"  */
     T_then = 268,                  /* "then"  */
-    T_var = 269,                   /* "var"  */
+    T_div = 269,                   /* "div"  */
     T_identifier = 270,            /* T_identifier  */
-    T_integer = 271,               /* T_integer  */
-    T_atom = 272,                  /* T_atom  */
+    T_atom = 271,                  /* T_atom  */
+    T_integer = 272,               /* T_integer  */
     T_string = 273                 /* T_string  */
   };
   typedef enum yytokentype yytoken_kind_t;
