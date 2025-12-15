@@ -29,11 +29,13 @@ div       { return T_div;   }
 (([2-9]|([12][0-9]?))|(3[0-6]))#[0-9a-zA-Z]+$|(-?[0-9]+)        { return T_integer;     }
 [a-z][a-zA-Z0-9_]*                                              { return T_atom;        }
 \"([^\"]|\\\")*\"                                               { return T_string;      }
-->                                                              { return T_arrow;       }
-<<                                                              { return T_bin_open;    }
->>                                                              { return T_bin_close;   }
-=<                                                              { return T_loe;         }
-=>                                                              { return T_moe;         }
+"->"                                                            { return T_arrow;       }
+"<<"                                                            { return T_bin_open;    }
+">>"                                                            { return T_bin_close;   }
+"=="                                                            { return T_equal;       }
+"=<"                                                            { return T_equal_less;  }
+"=>"                                                            { return T_equal_more;  }
+"/="                                                            { return T_not_equal;   }
 [\(\)\,\;\=\+\-\.\*\/]                                          { return yytext[0];     }
 
 {COMMENT}       { /* nothing */        }
@@ -52,11 +54,11 @@ void ERROR(const char msg[])
     exit(1);
 }
 
-int main() {
-  int token;
-  do {
-    token = yylex();
-    printf(" token = %d, lexeme = %s\n", token, yytext);
-  } while (token != T_eof);
-  return 0;
-}
+//int main() {
+//  int token;
+//  do {
+//    token = yylex();
+//    printf(" token = %d, lexeme = %s\n", token, yytext);
+//  } while (token != T_eof);
+//  return 0;
+//}

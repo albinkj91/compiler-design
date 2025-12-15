@@ -1,6 +1,9 @@
 a.out
+lexer.c
+lexer.o
 lex.yy.c
 parser.h
 parser.c
+parser.o
 parser.output
 compiler
